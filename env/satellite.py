@@ -4,4 +4,3 @@ class Satellite:
         self.GPU_number = GPU_number
         self.MEMORY_mb = MEMORY_mb
         self.POWER_W=200
-        #1919810
