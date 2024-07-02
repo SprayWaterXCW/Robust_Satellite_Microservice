@@ -13,13 +13,25 @@ class SatelliteGraph:
     def init(self):
         for i in range(self.row):
             for j in range(self.column):
-                self.satellite_count[i][j] = Satellite()
+                self.satellite_map[i].append(Satellite())
         
         for i in range(self.satellite_count):
             for j in range(self.satellite_count):
                 if i == j:
-                    self.distance_map[i][j] = 0
-                elif i == j - 1 or i == j + 1 or i == j - self.column or i == j + self.column:
-                    self.distance_map[i][j] = 50000
+                    self.distance_map[i].append(0)
+                elif self.checkSatelliteID(i, j):
+                    self.distance_map[i].append(50000)
                 else:
-                    self.distance_map[i][j] = 0x3f3f3f3f
+                    self.distance_map[i].append(0x3f3f3f3f)
+
+    def checkSatelliteID(self, i, j):
+        if i == j - 1 and j - 1 >= 0:
+            return True
+        elif i == j + 1 and j + 1 < self.satellite_count:
+            return True
+        elif i == j - self.column and j - self.column >= 0:
+            return True
+        elif i == j + self.column and j + self.column < self.satellite_count:
+            return True
+        else:
+            return False

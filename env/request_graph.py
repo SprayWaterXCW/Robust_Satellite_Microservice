@@ -15,4 +15,4 @@ class RequestGraph:
         for i in range(self.time_line):
             for j in range(self.row):
                 for k in range(self.column):
-                    self.request_list[i][j][k] = Request(j * self.column + k, i, random.random(5, 15))
+                    self.request_list[i][j].append(Request(j * self.column + k, i, random.randint(5, 15)))
